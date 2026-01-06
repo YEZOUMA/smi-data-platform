@@ -1,0 +1,24 @@
+smi:
+  target: prod
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      port: 5433
+      user: smi_user
+      password: smi_password
+      dbname: smi_dwh
+      schema: silver
+      threads: 4
+      keepalives_idle: 0
+
+    prod:
+      type: postgres
+      host: postgres-dwh
+      port: 5432
+      user: smi_user
+      password: smi_password
+      dbname: smi_dwh
+      schema: silver
+      threads: 8
+      keepalives_idle: 0
