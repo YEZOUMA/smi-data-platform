@@ -1,0 +1,21 @@
+name: data_quality_checkpoint
+config_version: 1.0
+class_name: Checkpoint
+run_name_template: "%Y%m%d-%H%M%S-data_quality"
+validations:
+  - batch_request:
+      datasource_name: my_datasource
+      data_connector_name: default_runtime_data_connector_name
+      data_asset_name: my_runtime_asset_name
+      runtime_parameters:
+        path: /mnt/g/Bonzi/Data Engineering/Projet alpha/smi-data-platform/data/source/Donnees_POC2024_2025_10122025.xls
+      batch_identifiers:
+        runtime_batch_identifier_name: Donnees_POC2024_2025_10122025  # valeur unique pour le batch
+    expectation_suite_name: data_quality_suite
+action_list:
+  - name: store_validation_result
+    action:
+      class_name: StoreValidationResultAction
+  - name: update_data_docs
+    action:
+      class_name: UpdateDataDocsAction

@@ -174,7 +174,7 @@ services:
       _AIRFLOW_WWW_USER_PASSWORD: admin
     user: "0:0"
     volumes:
-      - airflow-logs:/sources/logs
+      - ./data:/opt/airflow/data  # airflow-logs:/sources/logs
     networks:
       - smi-network
 
@@ -288,5 +288,6 @@ volumes:
   alertmanager-data:
 
 networks:
-  smi-network:
+  smi-network :
     driver: bridge
+    

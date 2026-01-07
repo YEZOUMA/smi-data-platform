@@ -180,11 +180,11 @@ make run-pipeline
 
 ### URLs des Services
 
-- **Airflow**: http://localhost:8080 (admin/admin)
-- **Superset**: http://localhost:8088 (admin/admin)
-- **Grafana**: http://localhost:3000 (admin/admin)
+- **Airflow**: http://localhost:8080 (username/password)
+- **Superset**: http://localhost:8088 (username/password)
+- **Grafana**: http://localhost:3000 (username/password)
 - **Prometheus**: http://localhost:9090
-- **MinIO Console**: http://localhost:9001 (minioadmin/minioadmin)
+- **MinIO Console**: http://localhost:9001 (username/password)
 
 ## 📊 Modèle de Données
 

@@ -1,7 +1,7 @@
 .PHONY: help setup up down restart logs ps clean test lint format install-dev import-data run-pipeline
 
 # Variables
-DOCKER_COMPOSE := docker-compose
+DOCKER_COMPOSE := docker compose
 PYTHON := python3
 PIP := pip3
 
@@ -64,8 +64,14 @@ ps: ## Lister les services en cours d'exécution
 # Gestion des données
 import-data: ## Importer les données source
 	@echo "$(GREEN)📥 Importation des données source...$(NC)"
-	@cp /mnt/user-data/uploads/Donnees_POC2024_2025_10122025.xls data/source/ 2>/dev/null || echo "Fichier source non trouvé"
-	@echo "$(GREEN)✅ Données importées!$(NC)"
+	@if [ -f data/source/Donnees_POC2024_2025_10122025.xls ]; then \
+		echo "$(GREEN)✅ Fichier source déjà présent dans data/source/$(NC)"; \
+	elif [ -f /mnt/user-data/uploads/Donnees_POC2024_2025_10122025.xls ]; then \
+		cp /mnt/user-data/uploads/Donnees_POC2024_2025_10122025.xls data/source/; \
+		echo "$(GREEN)✅ Fichier copié depuis /mnt/user-data/uploads/$(NC)"; \
+	else \
+		echo "$(YELLOW)⚠️  Fichier source non trouvé. Placez Donnees_POC2024_2025_10122025.xls dans data/source/$(NC)"; \
+	fi
 
 run-pipeline: ## Exécuter le pipeline ETL complet
 	@echo "$(GREEN)🔄 Exécution du pipeline ETL...$(NC)"
@@ -203,7 +209,7 @@ version: ## Afficher les versions des composants
 	@echo "$(GREEN)📦 Versions des composants:$(NC)"
 	@echo "  Python:     $$($(PYTHON) --version)"
 	@echo "  Docker:     $$(docker --version)"
-	@echo "  Docker Compose: $$(docker-compose --version)"
+	@echo "  Docker Compose: $$(docker compose version)"
 	@$(PIP) show pandas dbt-core apache-airflow 2>/dev/null | grep -E "Name|Version" || echo "  Packages non installés"
 
 health: ## Vérifier la santé des services
