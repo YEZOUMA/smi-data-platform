@@ -414,9 +414,7 @@ MIT License - Voir `LICENSE` pour plus de détails.
 
 ## 📞 Support
 
-- Email: support@sandtechnologies.bf
-- Issues: GitHub Issues
-- Documentation: https://docs.smi-platform.bf
+- Email: desire.by3@gmail.com
 
 ---
 
